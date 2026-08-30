@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://brb5x0no8jbu5"]
+
+[ext_resource type="Script" uid="uid://cehm74kvxahjv" path="res://scripts/scenes logic/insert_token_popup.gd" id="1_obivy"]
+
+[node name="TokenInsertDialog" type="ConfirmationDialog" unique_id=1414246354]
+oversampling_override = 1.0
+title = "Insira o token"
+initial_position = 1
+visible = true
+ok_button_text = "Confirmar"
+cancel_button_text = "Cancelar"
+script = ExtResource("1_obivy")
+
+[node name="TokenInput" type="LineEdit" parent="." unique_id=626148605]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 51.0
+placeholder_text = "Meu token"
+alignment = 1
+
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]

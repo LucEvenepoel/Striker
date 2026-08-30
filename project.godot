@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Striker"
 run/main_scene="uid://drcprhoqolro8"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=30
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0.14117648, 0.14117648, 0.14117648, 0)
@@ -29,11 +29,12 @@ config/icon="uid://pqwnchm4r3wc"
 
 SignalManager="*uid://b7fy5tyg7nfl"
 FileManager="*uid://43pbclacl33o"
+Weblogic="*uid://bxmfwb4mfenor"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=830
+window/size/viewport_height=380
 window/size/resizable=false
 window/size/minimize_disabled=true
 window/size/maximize_disabled=true

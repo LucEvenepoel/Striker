@@ -1,32 +1,13 @@
 [gd_scene format=3 uid="uid://drcprhoqolro8"]
 
-[ext_resource type="Script" uid="uid://lxi34oihtdrs" path="res://scripts/MainApp.gd" id="1_4nhha"]
+[ext_resource type="Script" uid="uid://lxi34oihtdrs" path="res://scripts/main_app.gd" id="1_4nhha"]
 [ext_resource type="Texture2D" uid="uid://d3xf4qkg4ihr3" path="res://sprites/Background/solidbg.png" id="2_kpf3g"]
 [ext_resource type="StyleBox" uid="uid://cujx3315dmrvb" path="res://Styles/normalclassicbutton.tres" id="3_kd0yb"]
 [ext_resource type="StyleBox" uid="uid://knkvl6mfr3sx" path="res://Styles/pressedclassicbutton.tres" id="4_n5mch"]
-[ext_resource type="StyleBox" uid="uid://1akkwopfacbo" path="res://Styles/ShowOutputStyletres.tres" id="5_ca15d"]
 [ext_resource type="StyleBox" uid="uid://c4kpfftbxj1wu" path="res://Styles/normalinputbar.tres" id="6_q7718"]
 [ext_resource type="StyleBox" uid="uid://cm2sj8klt46ye" path="res://Styles/focuslinputbar.tres" id="7_nlou7"]
-[ext_resource type="PackedScene" uid="uid://1uvgkexf1ev2" path="res://scenes/InsertTokenScreen.tscn" id="8_8fai6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88ydh"]
-bg_color = Color(0.07058824, 0.07058824, 0.078431375, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="GDScript" id="GDScript_88ydh"]
-script/source = "extends Node
-
-func _on_add_token_button_pressed() -> void:
-	$\"../InsertTokenScreen\".visible = true
-"
+[ext_resource type="PackedScene" uid="uid://bj81swgb5pk4i" path="res://scenes/Console.tscn" id="8_4nhha"]
+[ext_resource type="PackedScene" uid="uid://brb5x0no8jbu5" path="res://scenes/InsertTokenPopup.tscn" id="9_kpf3g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khwav"]
 bg_color = Color(0.39215687, 0.78431374, 0.39215687, 1)
@@ -39,42 +20,13 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muk3w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wn5qq"]
+[sub_resource type="GDScript" id="GDScript_4nhha"]
+script/source = "extends Button
 
-[sub_resource type="GDScript" id="GDScript_muk3w"]
-script/source = "extends LineEdit
+const MAIN_PATH = \"user://\"
 
-
-
-
-	
-@onready var httprequest = $\"../../SearchData\"
-
-var headers = [
-		\"Authorization: Bot MTQzMjMyMzI0OTQzNzQwOTMzMA.GV0E3Z._-C96YA3f2kVkw6vXGUXdw2bTdbPG4yI-DV0Co\",
-		 \"Content-Type: application/json\"
-]
-
-func _on_button_pressed() -> void:
-	if self.text == \"\":
-		OS.alert(\"O campo de ID não pode estar vazio.\", \"Ei, não se esqueça de mim!\")
-	else:
-		var idinput = self.text
-		var url = \"https://discord.com/api/v10/users/%s\" % int(idinput)
-		httprequest.request(url, headers)
-
-func _on_discord_requests_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
-	var outputrequest = _body.get_string_from_utf8()
-	
-	var json = JSON.new()
-	
-	var info = json.parse(outputrequest)
-	if info == OK:
-		var data = json.get_data()
-		var avatar = data.get(\"avatar\", \"\")
-		var banner = data.get(\"banner\", \"\")
-		print(avatar)
-		print(banner)
+func _on_pressed() -> void:
+	OS.shell_open(ProjectSettings.globalize_path(MAIN_PATH))
 "
 
 [node name="MainApp" type="Node2D" unique_id=433414413]
@@ -88,44 +40,47 @@ centered = false
 
 [node name="ValidateURL" type="HTTPRequest" parent="." unique_id=40378214]
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=2007845312]
-
-[node name="IDLabel" type="Label" parent="UI" unique_id=499965800]
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 50.0
-offset_bottom = 50.0
-text = "ID:"
-
-[node name="ShowOutputLabel" type="Label" parent="UI" unique_id=1714835521]
-offset_left = 1115.0
-offset_top = 462.0
-offset_right = 1221.0
-offset_bottom = 485.0
-text = "Show Output:"
-
-[node name="Console" type="RichTextLabel" parent="UI" unique_id=131101258]
-offset_left = 750.0
-offset_top = 100.0
-offset_right = 1250.0
-offset_bottom = 450.0
-focus_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_88ydh")
-selection_enabled = true
-
-[node name="Control" type="Control" parent="UI" unique_id=1603906403]
+[node name="Control" type="Control" parent="." unique_id=1313851821]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = SubResource("GDScript_88ydh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RunButton" type="Button" parent="UI/Control" unique_id=314522722]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1514104172]
 layout_mode = 0
-offset_left = 330.0
-offset_top = 91.0
-offset_right = 430.0
-offset_bottom = 122.0
+offset_right = 300.0
+offset_bottom = 380.0
+theme_override_constants/separation = 245
+
+[node name="IDArea" type="VBoxContainer" parent="Control/VBoxContainer" unique_id=453304049]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="ROW1" type="VBoxContainer" parent="Control/VBoxContainer/IDArea" unique_id=1836051462]
+layout_mode = 2
+
+[node name="IDLabel" type="Label" parent="Control/VBoxContainer/IDArea/ROW1" unique_id=499965800]
+layout_mode = 2
+text = "Insira o ID:"
+
+[node name="ID" type="LineEdit" parent="Control/VBoxContainer/IDArea/ROW1" unique_id=1485110182]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("6_q7718")
+theme_override_styles/read_only = ExtResource("6_q7718")
+theme_override_styles/focus = ExtResource("7_nlou7")
+
+[node name="ROW2" type="HBoxContainer" parent="Control/VBoxContainer/IDArea" unique_id=2000170465]
+layout_mode = 2
+alignment = 2
+
+[node name="RunButton" type="Button" parent="Control/VBoxContainer/IDArea/ROW2" unique_id=314522722]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
 theme_override_styles/normal = ExtResource("3_kd0yb")
 theme_override_styles/pressed = ExtResource("3_kd0yb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khwav")
@@ -133,23 +88,14 @@ theme_override_styles/disabled = ExtResource("4_n5mch")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_khwav")
 text = "Buscar"
 
-[node name="ShowOutputButton" type="CheckBox" parent="UI/Control" unique_id=1763279894]
-layout_mode = 0
-offset_left = 1230.0
-offset_top = 460.0
-offset_right = 1250.0
-offset_bottom = 484.0
-theme_override_styles/normal = ExtResource("5_ca15d")
-theme_override_styles/pressed = ExtResource("5_ca15d")
-theme_override_styles/hover = ExtResource("5_ca15d")
-theme_override_styles/focus = ExtResource("5_ca15d")
+[node name="SettingsArea" type="VBoxContainer" parent="Control/VBoxContainer" unique_id=218961766]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="AddTokenButton" type="Button" parent="UI/Control" unique_id=757002077]
-layout_mode = 0
-offset_left = 1136.0
-offset_top = 10.0
-offset_right = 1270.0
-offset_bottom = 41.0
+[node name="AddTokenButton" type="Button" parent="Control/VBoxContainer/SettingsArea" unique_id=757002077]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 theme_override_styles/normal = ExtResource("3_kd0yb")
 theme_override_styles/pressed = ExtResource("4_n5mch")
 theme_override_styles/hover = ExtResource("4_n5mch")
@@ -157,43 +103,29 @@ theme_override_styles/disabled = ExtResource("4_n5mch")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_muk3w")
 text = "Adicionar Token"
 
-[node name="ClearConsoleButton" type="Button" parent="UI/Control" unique_id=719663209]
-layout_mode = 0
-offset_left = 750.0
-offset_top = 460.0
-offset_right = 856.0
-offset_bottom = 483.0
+[node name="OpenMainFolderButton" type="Button" parent="Control/VBoxContainer/SettingsArea" unique_id=1279983057]
+layout_mode = 2
 theme_override_styles/normal = ExtResource("3_kd0yb")
 theme_override_styles/pressed = ExtResource("4_n5mch")
 theme_override_styles/hover = ExtResource("4_n5mch")
-theme_override_styles/disabled = ExtResource("4_n5mch")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wn5qq")
-text = "Clear Console"
+theme_override_styles/focus = ExtResource("4_n5mch")
+text = "Abrir pasta"
+script = SubResource("GDScript_4nhha")
 
-[node name="ID" type="LineEdit" parent="UI" unique_id=1485110182]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -630.0
-offset_top = -310.0
-offset_right = -210.0
-offset_bottom = -279.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-theme_override_styles/normal = ExtResource("6_q7718")
-theme_override_styles/read_only = ExtResource("6_q7718")
-theme_override_styles/focus = ExtResource("7_nlou7")
-script = SubResource("GDScript_muk3w")
-
-[node name="InsertTokenScreen" parent="UI" unique_id=298949672 instance=ExtResource("8_8fai6")]
+[node name="InsertTokenPopup" parent="." unique_id=1501666119 instance=ExtResource("9_kpf3g")]
 visible = false
+
+[node name="Console" parent="." unique_id=1294332739 instance=ExtResource("8_4nhha")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 325.0
+offset_right = 325.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="request_completed" from="SearchData" to="." method="_on_http_request_request_completed"]
 [connection signal="request_completed" from="ValidateURL" to="." method="_on_validate_url_request_completed"]
-[connection signal="pressed" from="UI/Control/RunButton" to="." method="_on_run_button_pressed"]
-[connection signal="toggled" from="UI/Control/ShowOutputButton" to="." method="_on_show_output_button_toggled"]
-[connection signal="pressed" from="UI/Control/AddTokenButton" to="." method="_on_add_token_button_pressed"]
-[connection signal="pressed" from="UI/Control/ClearConsoleButton" to="." method="_on_clear_console_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/IDArea/ROW2/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/SettingsArea/AddTokenButton" to="." method="_on_add_token_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/SettingsArea/OpenMainFolderButton" to="." method="_on_open_main_folder_button_pressed"]
