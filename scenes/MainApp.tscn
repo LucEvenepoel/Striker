@@ -36,10 +36,6 @@ script = ExtResource("1_4nhha")
 texture = ExtResource("2_kpf3g")
 centered = false
 
-[node name="SearchData" type="HTTPRequest" parent="." unique_id=1576722417]
-
-[node name="ValidateURL" type="HTTPRequest" parent="." unique_id=40378214]
-
 [node name="Control" type="Control" parent="." unique_id=1313851821]
 layout_mode = 3
 anchors_preset = 15
@@ -124,8 +120,6 @@ offset_right = 325.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[connection signal="request_completed" from="SearchData" to="." method="_on_http_request_request_completed"]
-[connection signal="request_completed" from="ValidateURL" to="." method="_on_validate_url_request_completed"]
 [connection signal="pressed" from="Control/VBoxContainer/IDArea/ROW2/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SettingsArea/AddTokenButton" to="." method="_on_add_token_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SettingsArea/OpenMainFolderButton" to="." method="_on_open_main_folder_button_pressed"]

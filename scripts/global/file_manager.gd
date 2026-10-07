@@ -2,7 +2,6 @@ extends Node
 
 const settingsfilepath: String = "user://properties.bin"
 const NUM_SIGNATURE: int = 2077
-var main_app;
 
 const default_dictionary: Dictionary = { 
 	"ShowAPIResponse": true,
@@ -13,7 +12,6 @@ var actual_dictionary = default_dictionary.duplicate()
 
 func _ready() -> void:
 	SignalManager.connect("app_started", verify_file_integrity)
-	main_app = get_tree().current_scene
 
 func verify_file_integrity() -> void:
 	if not FileAccess.file_exists(settingsfilepath):
@@ -67,8 +65,7 @@ func read_and_validate() -> void:
 		else:
 			repair_file()
 			return
-			
-	main_app.main_dictionary = actual_dictionary
+
 	SignalManager.read_finshed.emit()
 
 func write(Ekey: Variant, Value: Variant) -> void:

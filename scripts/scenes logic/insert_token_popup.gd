@@ -1,10 +1,9 @@
 extends Window
 
-@onready var token_input: LineEdit = $TokenInput
-@onready var main_app: Node2D = $".."
+@onready var input: LineEdit = $TokenInput
 
 func _on_confirmed() -> void:
-	var token = token_input.text
+	var token = input.text
 	
 	if (token == ""):
 		OS.alert("O campo do token não pode estar vazio!", "Atenção!")
@@ -12,6 +11,8 @@ func _on_confirmed() -> void:
 	if (token.length() < 59):
 		OS.alert("Este token parece curto demais, verifique-o!", "Atenção!")
 		return
-		
-	main_app.main_dictionary["Token"] = token
-	FileManager.write("Token", "%s" % token)
+	
+	SignalManager.new_data_inserted.emit("Token", token)
+
+func _on_canceled() -> void:
+	input.text = ""

@@ -11,3 +11,9 @@ signal new_data_inserted
 
 @warning_ignore("unused_signal")
 signal log
+
+@warning_ignore("unused_signal")
+signal search_user
+
+@warning_ignore("unused_signal")
+signal verify_data

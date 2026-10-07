@@ -19,4 +19,5 @@ offset_bottom = 51.0
 placeholder_text = "Meu token"
 alignment = 1
 
+[connection signal="canceled" from="." to="." method="_on_canceled"]
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
