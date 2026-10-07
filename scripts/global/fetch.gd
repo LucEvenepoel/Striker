@@ -12,8 +12,6 @@ var user_bag: Dictionary = {
 	"BannerID": ""
 }
 
-var urls_bag: Dictionary = {}
-
 func _ready() -> void:
 	SignalManager.connect("search_user", fetch)
 	add_child(http)
@@ -52,22 +50,26 @@ func finish_fetch(_result: int, response_code: int, _headers: PackedStringArray,
 			return
 
 func verify_urls():
-	urls_bag = {
+	var avatar_bag: Dictionary = {
 		"default_discord_static_avatar_url": "%s/avatars/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]],
-		"default_discord_animated_avatar_url": "%s/avatars/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]],
+		"default_discord_animated_avatar_url": "%s/avatars/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]]
+	}
+	
+	var banner_bag = {
 		"default_discord_static_banner_url": "%s/banners/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]],
 		"default_discord_animated_banner_url": "%s/banners/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]]
 	}
-	for url in urls_bag:
-		var temp_http = HTTPRequest.new()
-		add_child(temp_http)
-		temp_http.request_completed.connect(
-			func(result, response_code, headers, body):
-			finish_verify(url, result, response_code, headers, body)
-			temp_http.queue_free()
-		)
-		temp_http.request(urls_bag[url])
-
-func finish_verify(url: String, _result: int, response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
-	if response_code == 200:
-		SignalManager.log.emit(urls_bag[url])
+	
+	if !(user_bag["AvatarID"]== ""):
+		for url in avatar_bag:
+			if user_bag["AvatarID"].begins_with("a_"):
+				SignalManager.log.emit(avatar_bag[url])
+			else:
+				SignalManager.log.emit(avatar_bag["default_discord_static_banner_url"])
+		
+	if !(user_bag["BannerID"] == ""):
+		for url in banner_bag:
+			if user_bag["BannerID"].begins_with("a_"):
+				SignalManager.log.emit(banner_bag[url])
+			else:
+				SignalManager.log.emit(banner_bag["default_discord_static_banner_url"])
