@@ -59,17 +59,17 @@ func verify_urls():
 		"default_discord_static_banner_url": "%s/banners/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]],
 		"default_discord_animated_banner_url": "%s/banners/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]]
 	}
-	
-	if !(user_bag["AvatarID"]== ""):
-		for url in avatar_bag:
-			if user_bag["AvatarID"].begins_with("a_"):
+
+	if !(user_bag["AvatarID"] == null):
+		if (user_bag["AvatarID"].begins_with("a_")):
+			for url in avatar_bag:
 				SignalManager.log.emit(avatar_bag[url])
-			else:
-				SignalManager.log.emit(avatar_bag["default_discord_static_banner_url"])
+		else:
+			SignalManager.log.emit(avatar_bag["default_discord_static_avatar_url"])
 		
-	if !(user_bag["BannerID"] == ""):
-		for url in banner_bag:
-			if user_bag["BannerID"].begins_with("a_"):
+	if !(user_bag["BannerID"] == null):
+		if (user_bag["BannerID"].begins_with("a_")):
+			for url in banner_bag:
 				SignalManager.log.emit(banner_bag[url])
-			else:
-				SignalManager.log.emit(banner_bag["default_discord_static_banner_url"])
+		else:
+			SignalManager.log.emit(banner_bag["default_discord_static_banner_url"])

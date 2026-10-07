@@ -65,8 +65,7 @@ func read_and_validate() -> void:
 		else:
 			repair_file()
 			return
-	
-	print(actual_dictionary["Token"])
+
 	SignalManager.read_finshed.emit()
 
 func write(Ekey: Variant, Value: Variant) -> void:
