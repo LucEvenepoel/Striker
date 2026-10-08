@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brb5x0no8jbu5"]
 
-[ext_resource type="Script" uid="uid://cehm74kvxahjv" path="res://scripts/scenes logic/insert_token_popup.gd" id="1_obivy"]
+[ext_resource type="Script" uid="uid://cehm74kvxahjv" path="res://components/UI Logic/insert_token_popup.gd" id="1_obivy"]
 
 [node name="TokenInsertDialog" type="ConfirmationDialog" unique_id=1414246354]
 oversampling_override = 1.0
