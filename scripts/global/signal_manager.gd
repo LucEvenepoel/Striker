@@ -16,4 +16,4 @@ signal log
 signal search_user
 
 @warning_ignore("unused_signal")
-signal verify_data
+signal search_finshed

@@ -2,15 +2,22 @@
 
 [ext_resource type="Script" uid="uid://lxi34oihtdrs" path="res://scripts/main_app.gd" id="1_4nhha"]
 [ext_resource type="Texture2D" uid="uid://d3xf4qkg4ihr3" path="res://sprites/Background/solidbg.png" id="2_kpf3g"]
-[ext_resource type="StyleBox" uid="uid://cujx3315dmrvb" path="res://Styles/normalclassicbutton.tres" id="3_kd0yb"]
-[ext_resource type="StyleBox" uid="uid://knkvl6mfr3sx" path="res://Styles/pressedclassicbutton.tres" id="4_n5mch"]
-[ext_resource type="StyleBox" uid="uid://c4kpfftbxj1wu" path="res://Styles/normalinputbar.tres" id="6_q7718"]
-[ext_resource type="StyleBox" uid="uid://cm2sj8klt46ye" path="res://Styles/focuslinputbar.tres" id="7_nlou7"]
+[ext_resource type="StyleBox" uid="uid://cujx3315dmrvb" path="res://styles/normalclassicbutton.tres" id="3_kd0yb"]
+[ext_resource type="StyleBox" uid="uid://knkvl6mfr3sx" path="res://styles/pressedclassicbutton.tres" id="4_n5mch"]
+[ext_resource type="StyleBox" uid="uid://c4kpfftbxj1wu" path="res://styles/normalinputbar.tres" id="6_q7718"]
+[ext_resource type="StyleBox" uid="uid://cm2sj8klt46ye" path="res://styles/focuslinputbar.tres" id="7_nlou7"]
 [ext_resource type="PackedScene" uid="uid://bj81swgb5pk4i" path="res://scenes/Console.tscn" id="8_4nhha"]
 [ext_resource type="PackedScene" uid="uid://brb5x0no8jbu5" path="res://scenes/InsertTokenPopup.tscn" id="9_kpf3g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khwav"]
 bg_color = Color(0.39215687, 0.78431374, 0.39215687, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2v1hb"]
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -80,7 +87,7 @@ layout_mode = 2
 theme_override_styles/normal = ExtResource("3_kd0yb")
 theme_override_styles/pressed = ExtResource("3_kd0yb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khwav")
-theme_override_styles/disabled = ExtResource("4_n5mch")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2v1hb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_khwav")
 text = "Buscar"
 

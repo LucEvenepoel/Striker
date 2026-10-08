@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bj81swgb5pk4i"]
 
-[ext_resource type="StyleBox" uid="uid://1akkwopfacbo" path="res://Styles/ShowOutputStyletres.tres" id="1_6ll0r"]
+[ext_resource type="StyleBox" uid="uid://1akkwopfacbo" path="res://styles/ShowOutputStyletres.tres" id="1_6ll0r"]
 [ext_resource type="Script" uid="uid://dp663bpcemtsb" path="res://scripts/scenes logic/console.gd" id="1_tysv4"]
-[ext_resource type="StyleBox" uid="uid://cujx3315dmrvb" path="res://Styles/normalclassicbutton.tres" id="2_tysv4"]
-[ext_resource type="StyleBox" uid="uid://knkvl6mfr3sx" path="res://Styles/pressedclassicbutton.tres" id="3_n3e2o"]
+[ext_resource type="StyleBox" uid="uid://cujx3315dmrvb" path="res://styles/normalclassicbutton.tres" id="2_tysv4"]
+[ext_resource type="StyleBox" uid="uid://knkvl6mfr3sx" path="res://styles/pressedclassicbutton.tres" id="3_n3e2o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ll0r"]
 bg_color = Color(0.07058824, 0.07058824, 0.078431375, 1)

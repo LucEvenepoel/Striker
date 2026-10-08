@@ -73,3 +73,5 @@ func verify_urls():
 				SignalManager.log.emit(banner_bag[url])
 		else:
 			SignalManager.log.emit(banner_bag["default_discord_static_banner_url"])
+			
+	SignalManager.search_finshed.emit()
