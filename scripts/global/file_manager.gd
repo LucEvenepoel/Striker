@@ -1,7 +1,7 @@
 extends Node
 
 const settingsfilepath: String = "user://properties.bin"
-const NUM_SIGNATURE: int = 2077
+const NUM_SIGNATURE: int = 0101
 
 const default_dictionary: Dictionary = { 
 	"ShowAPIResponse": true,
