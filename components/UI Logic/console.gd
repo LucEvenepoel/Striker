@@ -12,7 +12,7 @@ func change_output_button_state() -> void:
 	show_output_button.button_pressed = FileManager.actual_dictionary["ShowAPIResponse"]
 
 func add_message(message: String) -> void:
-	console_screen.text += (message + "\n")
+	console_screen.append_text(message + "\n")
 	console_screen.scroll_to_line(console_screen.get_line_count() - 1)
 
 func _on_clear_console_button_pressed() -> void:

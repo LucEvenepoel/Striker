@@ -54,7 +54,7 @@ func read_and_validate():
 				actual_dictionary[k] = temp_dictionary[k]
 			else: 
 				return repair_file()
-				
+
 	SignalManager.read_finshed.emit()
 
 func write(Ekey: Variant, Value: Variant):
