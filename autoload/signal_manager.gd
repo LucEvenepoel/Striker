@@ -10,7 +10,7 @@ signal read_finshed
 signal new_data_inserted
 
 @warning_ignore("unused_signal")
-signal log
+signal console_log
 
 @warning_ignore("unused_signal")
 signal search_user

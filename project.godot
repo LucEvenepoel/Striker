@@ -29,7 +29,7 @@ config/icon="uid://pqwnchm4r3wc"
 
 SignalManager="*uid://b7fy5tyg7nfl"
 FileManager="*uid://43pbclacl33o"
-Weblogic="*uid://bxmfwb4mfenor"
+Fetch="*uid://bxmfwb4mfenor"
 
 [display]
 

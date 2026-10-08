@@ -8,11 +8,11 @@ const MAIN_PATH = "user://"
 
 
 func _ready() -> void:
-	SignalManager.app_started.emit()
 	SignalManager.new_data_inserted.connect(FileManager.write)
 	SignalManager.search_finshed.connect(
 		func (): run_button.disabled = false 
 	)
+	SignalManager.app_started.emit()
 
 func _on_open_main_folder_button_pressed() -> void:
 	OS.shell_open(ProjectSettings.globalize_path(MAIN_PATH))

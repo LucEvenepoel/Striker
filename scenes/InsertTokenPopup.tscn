@@ -5,7 +5,7 @@
 [node name="TokenInsertDialog" type="ConfirmationDialog" unique_id=1414246354]
 oversampling_override = 1.0
 title = "Insira o token"
-initial_position = 1
+initial_position = 2
 visible = true
 ok_button_text = "Confirmar"
 cancel_button_text = "Cancelar"

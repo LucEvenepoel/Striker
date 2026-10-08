@@ -31,9 +31,9 @@ func finish_fetch(_result: int, response_code: int, _headers: PackedStringArray,
 	var data = body.get_string_from_utf8()
 	var json = JSON.new()
 
-	if (data != null):
+	if (data != ""):
 		if (FileManager.actual_dictionary["ShowAPIResponse"]):
-			SignalManager.log.emit(data)
+			SignalManager.console_log.emit(data)
 		
 		var info = json.parse(data)
 		if info == OK:
@@ -43,10 +43,10 @@ func finish_fetch(_result: int, response_code: int, _headers: PackedStringArray,
 				user_bag["BannerID"] = requestdata.get("banner", "")
 				verify_urls()
 			else:
-				SignalManager.log.emit("Servidor: %s" % [requestdata])
+				SignalManager.console_log.emit("Servidor: %s" % [requestdata])
 				return
 		else:
-			SignalManager.log.emit("Ocorreu um erro ao parsear a resposta do servidor!")
+			SignalManager.console_log.emit("Ocorreu um erro ao parsear a resposta do servidor!")
 			return
 
 func verify_urls():
@@ -63,15 +63,15 @@ func verify_urls():
 	if !(user_bag["AvatarID"] == null):
 		if (user_bag["AvatarID"].begins_with("a_")):
 			for url in avatar_bag:
-				SignalManager.log.emit(avatar_bag[url])
+				SignalManager.console_log.emit(avatar_bag[url])
 		else:
-			SignalManager.log.emit(avatar_bag["default_discord_static_avatar_url"])
+			SignalManager.console_log.emit(avatar_bag["default_discord_static_avatar_url"])
 		
 	if !(user_bag["BannerID"] == null):
 		if (user_bag["BannerID"].begins_with("a_")):
 			for url in banner_bag:
-				SignalManager.log.emit(banner_bag[url])
+				SignalManager.console_log.emit(banner_bag[url])
 		else:
-			SignalManager.log.emit(banner_bag["default_discord_static_banner_url"])
+			SignalManager.console_log.emit(banner_bag["default_discord_static_banner_url"])
 			
 	SignalManager.search_finshed.emit()

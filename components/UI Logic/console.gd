@@ -5,8 +5,8 @@ extends Control
 @onready var show_output_button: CheckBox = $VBoxContainer/HBoxContainer/ShowOutputLabel/ShowOutputButton
 
 func _ready() -> void:
-	SignalManager.connect("log", add_message)
-	SignalManager.connect("read_finshed", change_output_button_state)
+	SignalManager.console_log.connect(add_message)
+	SignalManager.read_finshed.connect(change_output_button_state)
 
 func change_output_button_state() -> void:
 	show_output_button.button_pressed = FileManager.actual_dictionary["ShowAPIResponse"]
