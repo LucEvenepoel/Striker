@@ -17,12 +17,11 @@ var user_bag: Dictionary = {
 }
 
 func _ready() -> void:
-	SignalManager.search_user.connect(fetch)
 	add_child(http)
 	http.request_completed.connect(finish_fetch)
 	http.timeout = 15
 
-func fetch(UserID: String) -> void:
+func fetch(UserID: String):
 	if actual_dictionary["Token"] != "":
 		user_bag["UserID"] = UserID
 		var url = DISCORD_USER_STATIC_API + user_bag["UserID"]
@@ -31,13 +30,24 @@ func fetch(UserID: String) -> void:
 			"Content-Type: application/json",
 			"User-Agent: %s" % STRIKER_USER_AGENT
 		]
-		http.request(url, headers)
+		var err := http.request(url, headers)
+		if err != OK:
+			SignalManager.console_log.emit("Falha ao iniciar a requisição (erro %d)." % err)
+			SignalManager.search_finshed.emit()
+			return
+			
+		return OK
 	else:
 		SignalManager.console_log.emit("O Striker não pode fazer a requisição, Token vazio?")
 		SignalManager.search_finshed.emit()
 		return 
 
-func finish_fetch(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+func finish_fetch(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	if result != HTTPRequest.RESULT_SUCCESS:
+		SignalManager.console_log.emit("Falha de rede ou tempo esgotado (código %d)." % result)
+		SignalManager.search_finshed.emit()
+		return
+		
 	var data = body.get_string_from_utf8()
 	var json = JSON.new()
 	
@@ -77,19 +87,20 @@ func verify_urls() -> void:
 	if user_bag["AvatarID"] == null && user_bag["BannerID"] == null:
 		SignalManager.console_log.emit("O usuário não possui nenhum Avatar/Banner")
 		SignalManager.search_finshed.emit()
+		return
 
 	if !(user_bag["AvatarID"] == null):
 		if (user_bag["AvatarID"].begins_with("a_")):
 			for url in avatar_bag:
-				SignalManager.console_log.emit(avatar_bag[url])
+				SignalManager.console_show_link.emit(avatar_bag[url], "Avatar Animado")
 		else:
-			SignalManager.console_log.emit(avatar_bag["default_discord_static_avatar_url"])
+			SignalManager.console_show_link.emit(avatar_bag["default_discord_static_avatar_url"], "Avatar")
 		
 	if !(user_bag["BannerID"] == null):
 		if (user_bag["BannerID"].begins_with("a_")):
 			for url in banner_bag:
-				SignalManager.console_log.emit(banner_bag[url])
+				SignalManager.console_show_link.emit(banner_bag[url], "Banner Animado")
 		else:
-			SignalManager.console_log.emit(banner_bag["default_discord_static_banner_url"])
+			SignalManager.console_show_link.emit(banner_bag["default_discord_static_banner_url"], "Banner")
 			
 	SignalManager.search_finshed.emit()

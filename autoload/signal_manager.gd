@@ -7,13 +7,10 @@ signal app_started
 signal read_finshed
 
 @warning_ignore("unused_signal")
-signal new_data_inserted
-
-@warning_ignore("unused_signal")
 signal console_log
 
 @warning_ignore("unused_signal")
-signal search_user
+signal console_show_link
 
 @warning_ignore("unused_signal")
 signal search_finshed

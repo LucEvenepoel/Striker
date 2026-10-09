@@ -1,22 +1,30 @@
 extends Control
 
-@onready var main: Node2D = $".."
 @onready var console_screen: RichTextLabel = $VBoxContainer/Console
 @onready var show_output_button: CheckBox = $VBoxContainer/HBoxContainer/ShowOutputLabel/ShowOutputButton
 
 func _ready() -> void:
 	SignalManager.console_log.connect(add_message)
-	SignalManager.read_finshed.connect(change_output_button_state)
+	SignalManager.console_show_link.connect(add_link)
+	SignalManager.read_finshed.connect(
+	func ():
+		show_output_button.set_pressed_no_signal(FileManager.actual_dictionary["ShowAPIResponse"]) 
+	)
 
-func change_output_button_state() -> void:
-	show_output_button.button_pressed = FileManager.actual_dictionary["ShowAPIResponse"]
+func _on_show_output_button_toggled(toggled_on: bool) -> void:
+	FileManager.write("ShowAPIResponse", toggled_on)
 
-func add_message(message: String) -> void:
-	console_screen.append_text(message + "\n")
+func add_link(Link: String, Message: String):
+	var bb_code_link = "[url=%s][color=blue]Abrir %s no navegador[/color][/url] \n" % [Link, Message]
+	console_screen.append_text(bb_code_link)
 	console_screen.scroll_to_line(console_screen.get_line_count() - 1)
+
+func add_message(Message: String) -> void:
+	console_screen.add_text(Message + "\n")
+	console_screen.scroll_to_line(console_screen.get_line_count() - 1)
+
+func _on_console_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)
 
 func _on_clear_console_button_pressed() -> void:
 	console_screen.text = ""
-
-func _on_show_output_button_toggled(toggled_on: bool) -> void:
-	SignalManager.new_data_inserted.emit("ShowAPIResponse", toggled_on)

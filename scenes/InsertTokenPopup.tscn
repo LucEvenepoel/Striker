@@ -6,18 +6,34 @@
 oversampling_override = 1.0
 title = "Insira o token"
 initial_position = 2
+size = Vector2i(200, 123)
 visible = true
 ok_button_text = "Confirmar"
 cancel_button_text = "Cancelar"
 script = ExtResource("1_obivy")
 
-[node name="TokenInput" type="LineEdit" parent="." unique_id=626148605]
+[node name="VerticalAlignment" type="VBoxContainer" parent="." unique_id=566662731]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 192.0
-offset_bottom = 51.0
+offset_bottom = 74.0
+
+[node name="SecretButton" type="Button" parent="VerticalAlignment" unique_id=39195416]
+custom_minimum_size = Vector2(62, 20)
+custom_maximum_size = Vector2(62, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "Ver token"
+icon_alignment = 1
+
+[node name="TokenInput" type="LineEdit" parent="VerticalAlignment" unique_id=626148605]
+layout_mode = 2
 placeholder_text = "Meu token"
 alignment = 1
+secret = true
 
 [connection signal="canceled" from="." to="." method="_on_canceled"]
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="pressed" from="VerticalAlignment/SecretButton" to="." method="_on_secret_button_pressed"]

@@ -38,6 +38,7 @@ custom_minimum_size = Vector2(500, 350)
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ll0r")
+bbcode_enabled = true
 selection_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=982282553]
@@ -69,5 +70,6 @@ theme_override_styles/pressed = ExtResource("1_6ll0r")
 theme_override_styles/hover = ExtResource("1_6ll0r")
 theme_override_styles/focus = ExtResource("1_6ll0r")
 
+[connection signal="meta_clicked" from="VBoxContainer/Console" to="." method="_on_console_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ClearConsoleButton" to="." method="_on_clear_console_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/ShowOutputLabel/ShowOutputButton" to="." method="_on_show_output_button_toggled"]
