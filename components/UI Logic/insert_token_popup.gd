@@ -16,8 +16,10 @@ func _on_confirmed() -> void:
 	var err = FileManager.write("Token", token)
 	if err != OK:
 		OS.alert("Não foi possível guardar o token.", "Alerta!")
+	
+	clean_input_line()
 
-func _on_canceled() -> void:
+func clean_input_line() -> void: 
 	input.text = ""
 	
 func _on_secret_button_pressed() -> void:

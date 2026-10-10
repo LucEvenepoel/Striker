@@ -70,16 +70,20 @@ func finish_fetch(result: int, response_code: int, _headers: PackedStringArray, 
 			SignalManager.console_log.emit("Ocorreu um erro ao parsear a resposta do servidor!")
 			SignalManager.search_finshed.emit()
 			return
+	else:
+		SignalManager.console_log.emit("Ocorreu um erro ao acessar a resposta do servidor!")
+		SignalManager.search_finshed.emit()
+		return
 			
 func mount_urls() -> void:
 	avatar_bag = {
-		"default_discord_static_avatar_url": "%s/avatars/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]],
-		"default_discord_animated_avatar_url": "%s/avatars/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]]
+		"discord_static_avatar_url": "%s/avatars/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]],
+		"discord_animated_avatar_url": "%s/avatars/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["AvatarID"]]
 	}
 	
 	banner_bag = {
-		"default_discord_static_banner_url": "%s/banners/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]],
-		"default_discord_animated_banner_url": "%s/banners/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]]
+		"discord_static_banner_url": "%s/banners/%s/%s.png?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]],
+		"discord_animated_banner_url": "%s/banners/%s/%s.gif?size=2048" % [DISCORD_PROFILES_STATIC_RESOURCE_API, user_bag["UserID"], user_bag["BannerID"]]
 	}
 	verify_urls()
 
@@ -88,19 +92,15 @@ func verify_urls() -> void:
 		SignalManager.console_log.emit("O usuário não possui nenhum Avatar/Banner")
 		SignalManager.search_finshed.emit()
 		return
-
-	if !(user_bag["AvatarID"] == null):
-		if (user_bag["AvatarID"].begins_with("a_")):
-			for url in avatar_bag:
-				SignalManager.console_show_link.emit(avatar_bag[url], "Avatar Animado")
-		else:
-			SignalManager.console_show_link.emit(avatar_bag["default_discord_static_avatar_url"], "Avatar")
 		
+	if !(user_bag["AvatarID"] == null):
+		SignalManager.console_show_link.emit(avatar_bag["discord_static_avatar_url"], "Avatar Estático")
+		if (user_bag["AvatarID"].begins_with("a_")):
+			SignalManager.console_show_link.emit(avatar_bag["discord_animated_avatar_url"], "Avatar Animado")
+	
 	if !(user_bag["BannerID"] == null):
+		SignalManager.console_show_link.emit(banner_bag["discord_static_banner_url"], "Banner Estático")
 		if (user_bag["BannerID"].begins_with("a_")):
-			for url in banner_bag:
-				SignalManager.console_show_link.emit(banner_bag[url], "Banner Animado")
-		else:
-			SignalManager.console_show_link.emit(banner_bag["default_discord_static_banner_url"], "Banner")
-			
+			SignalManager.console_show_link.emit(banner_bag["discord_animated_banner_url"], "Banner Animado")
+
 	SignalManager.search_finshed.emit()

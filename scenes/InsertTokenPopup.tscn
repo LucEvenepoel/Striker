@@ -34,6 +34,6 @@ placeholder_text = "Meu token"
 alignment = 1
 secret = true
 
-[connection signal="canceled" from="." to="." method="_on_canceled"]
+[connection signal="canceled" from="." to="." method="clean_input_line"]
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
 [connection signal="pressed" from="VerticalAlignment/SecretButton" to="." method="_on_secret_button_pressed"]

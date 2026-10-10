@@ -19,7 +19,7 @@ func _on_add_token_button_pressed() -> void:
 	token_insert_popup.visible = true
 
 func _on_run_button_pressed() -> void:
-	var input: String = IDline.text
+	var input: String = IDline.text.strip_edges()
 	
 	if input == "":
 		OS.alert("O campo de ID não pode estar vazio.", "Alerta!")
