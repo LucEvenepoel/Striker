@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://brb5x0no8jbu5"]
+
+[ext_resource type="Script" uid="uid://cehm74kvxahjv" path="res://components/UI Logic/insert_token_popup.gd" id="1_obivy"]
+[ext_resource type="StyleBox" uid="uid://c4kpfftbxj1wu" path="res://styles/line_edit/norma_line_edit.tres" id="2_q4h7n"]
+[ext_resource type="StyleBox" uid="uid://cm2sj8klt46ye" path="res://styles/line_edit/focus_line_edit.tres" id="3_hfm8y"]
+
+[node name="TokenInsertDialog" type="ConfirmationDialog" unique_id=1414246354]
+oversampling_override = 1.0
+title = "UI_INSERT_TOKEN"
+initial_position = 2
+size = Vector2i(231, 123)
+visible = true
+ok_button_text = "UI_CONFIRM"
+cancel_button_text = "UI_CANCEL"
+script = ExtResource("1_obivy")
+
+[node name="VerticalAlignment" type="VBoxContainer" parent="." unique_id=566662731]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 223.0
+offset_bottom = 74.0
+
+[node name="SecretButton" type="Button" parent="VerticalAlignment" unique_id=39195416]
+custom_minimum_size = Vector2(62, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "UI_SHOW_TOKEN"
+icon_alignment = 1
+
+[node name="TokenInput" type="LineEdit" parent="VerticalAlignment" unique_id=626148605]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_q4h7n")
+theme_override_styles/read_only = ExtResource("2_q4h7n")
+theme_override_styles/focus = ExtResource("3_hfm8y")
+placeholder_text = "Token"
+alignment = 1
+secret = true
+
+[connection signal="canceled" from="." to="." method="clean_input_line"]
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="pressed" from="VerticalAlignment/SecretButton" to="." method="_on_secret_button_pressed"]

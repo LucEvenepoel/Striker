@@ -1,0 +1,30 @@
+keys,en,pt
+UI_SEARCH,Search,Buscar
+UI_ADD_TOKEN,Add token,Adicionar token
+UI_OPEN_FOLDER,Open folder,Abrir pasta
+UI_CLEAN_TERMINAL,Clear terminal,Limpar terminal
+UI_SHOW_RAW_DATA,Show raw request data?,Mostrar dados brutos da requisição?
+UI_SHOW_TOKEN,Show token,Mostrar token
+UI_HIDE_TOKEN,Hide token,Ocultar token
+UI_INSERT_ID,Enter the ID:,Insira o ID:
+UI_INSERT_TOKEN,Enter the token,Insira o token
+UI_CANCEL,Cancel,Cancelar
+UI_CONFIRM,Confirm,Confirmar
+UI_ALERT,Alert!,Alerta!
+UI_STATIC_AVATAR,Static Avatar,Avatar Estático
+UI_ANIMATED_AVATAR,Animated Avatar,Avatar Animado
+UI_STATIC_BANNER,Static Banner,Banner Estático
+UI_ANIMATED_BANNER,Animated Banner,Banner Animado
+UI_OPEN_IN_BROWSER,Open %s in browser,Abrir %s no navegador
+ALERT_USER_WITHOUT_AVATAR_OR_BANNER,The user does not have an avatar or banner.,O usuário não possui nenhum Avatar ou Banner.
+SERVER_HTTP_CODE_REPORT,Server: %s,Servidor: %s
+ERR_INIT_REQUEST_FAILED,Failed to initiate the request (error %d).,Falha ao iniciar a requisição (erro %d).
+ERR_CANT_MAKE_REQUEST,Striker cannot make the request; please check the token.,"O Striker não pode fazer a requisição, por favor, verifique o token."
+ERR_NET_OR_TIMEOUT,Network failure or timeout (code %d).,Falha de rede ou tempo esgotado (código %d).
+ERR_PARSE_RESPONSE,An error occurred while parsing the server response.,Ocorreu um erro ao parsear a resposta do servidor.
+ERR_CANT_ACCESS_SERVER_RESPONSE,An error occurred while accessing the server response.,Ocorreu um erro ao acessar a resposta do servidor.
+ERR_INVALID_INPUT,Invalid input.,Entrada inválida.
+ERR_EMPTY_TOKEN,The token field cannot be empty.,O campo do token não pode estar vazio.
+ERR_INVALID_TOKEN_SIZE,This token appears to have an invalid length; please check it.,"Este token parece ter um tamanho inválido, verifique-o."
+ERR_CANT_SAVE_THE_TOKEN,Unable to save the token.,Não foi possível salvar o token.
+ERR_EMPTY_ID,The ID field cannot be empty.,O campo do ID não pode estar vazio.

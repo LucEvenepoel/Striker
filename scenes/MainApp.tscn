@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://drcprhoqolro8"]
+
+[ext_resource type="Script" uid="uid://lxi34oihtdrs" path="res://components/main.gd" id="1_4nhha"]
+[ext_resource type="Texture2D" uid="uid://d3xf4qkg4ihr3" path="res://sprites/Background/solidbg.png" id="2_kpf3g"]
+[ext_resource type="StyleBox" uid="uid://cujx3315dmrvb" path="res://styles/buttons/normal_button.tres" id="3_kd0yb"]
+[ext_resource type="StyleBox" uid="uid://knkvl6mfr3sx" path="res://styles/buttons/pressed_button.tres" id="4_n5mch"]
+[ext_resource type="StyleBox" uid="uid://c4kpfftbxj1wu" path="res://styles/line_edit/norma_line_edit.tres" id="6_q7718"]
+[ext_resource type="StyleBox" uid="uid://cm2sj8klt46ye" path="res://styles/line_edit/focus_line_edit.tres" id="7_nlou7"]
+[ext_resource type="PackedScene" uid="uid://bj81swgb5pk4i" path="res://scenes/Console.tscn" id="8_4nhha"]
+[ext_resource type="PackedScene" uid="uid://brb5x0no8jbu5" path="res://scenes/InsertTokenPopup.tscn" id="9_kpf3g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khwav"]
+bg_color = Color(0.39215687, 0.78431374, 0.39215687, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2v1hb"]
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khwav"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muk3w"]
+
+[node name="MainApp" type="Node2D" unique_id=433414413]
+script = ExtResource("1_4nhha")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=876525213]
+texture = ExtResource("2_kpf3g")
+centered = false
+
+[node name="Control" type="Control" parent="." unique_id=1313851821]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1514104172]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 380.0
+theme_override_constants/separation = 245
+
+[node name="IDArea" type="VBoxContainer" parent="Control/VBoxContainer" unique_id=453304049]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="ROW1" type="VBoxContainer" parent="Control/VBoxContainer/IDArea" unique_id=1836051462]
+layout_mode = 2
+
+[node name="IDLabel" type="Label" parent="Control/VBoxContainer/IDArea/ROW1" unique_id=499965800]
+layout_mode = 2
+text = "UI_INSERT_ID"
+
+[node name="ID" type="LineEdit" parent="Control/VBoxContainer/IDArea/ROW1" unique_id=1485110182]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("6_q7718")
+theme_override_styles/read_only = ExtResource("6_q7718")
+theme_override_styles/focus = ExtResource("7_nlou7")
+placeholder_text = "ID"
+alignment = 1
+
+[node name="ROW2" type="HBoxContainer" parent="Control/VBoxContainer/IDArea" unique_id=2000170465]
+layout_mode = 2
+alignment = 2
+
+[node name="RunButton" type="Button" parent="Control/VBoxContainer/IDArea/ROW2" unique_id=314522722]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("3_kd0yb")
+theme_override_styles/pressed = ExtResource("3_kd0yb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_khwav")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2v1hb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_khwav")
+text = "UI_SEARCH"
+
+[node name="SettingsArea" type="VBoxContainer" parent="Control/VBoxContainer" unique_id=218961766]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="AddTokenButton" type="Button" parent="Control/VBoxContainer/SettingsArea" unique_id=757002077]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("3_kd0yb")
+theme_override_styles/pressed = ExtResource("4_n5mch")
+theme_override_styles/hover = ExtResource("4_n5mch")
+theme_override_styles/disabled = ExtResource("4_n5mch")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_muk3w")
+text = "UI_ADD_TOKEN"
+
+[node name="OpenMainFolderButton" type="Button" parent="Control/VBoxContainer/SettingsArea" unique_id=1279983057]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("3_kd0yb")
+theme_override_styles/pressed = ExtResource("4_n5mch")
+theme_override_styles/hover = ExtResource("4_n5mch")
+theme_override_styles/focus = ExtResource("4_n5mch")
+text = "UI_OPEN_FOLDER"
+
+[node name="InsertTokenPopup" parent="." unique_id=1501666119 instance=ExtResource("9_kpf3g")]
+visible = false
+
+[node name="Console" parent="." unique_id=1294332739 instance=ExtResource("8_4nhha")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 325.0
+offset_right = 325.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/IDArea/ROW2/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/SettingsArea/AddTokenButton" to="." method="_on_add_token_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/SettingsArea/OpenMainFolderButton" to="." method="_on_open_main_folder_button_pressed"]
