@@ -15,7 +15,7 @@ func _on_confirmed() -> void:
 	
 	var err = FS.save_data("Token", token)
 	if err != OK:
-		VisualErrorHandler.show_an_error("ERR_CANT_SAVE_THE_TOKEN")
+		VisualErrorHandler.show_an_error(tr("ERR_CANT_SAVE_THE_TOKEN"))
 	
 	clean_input_line()
 

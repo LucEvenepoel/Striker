@@ -3,7 +3,7 @@ extends Node
 const settingsfilepath: String = "user://properties.bin"
 
 const default_dictionary: Dictionary = { 
-	"ShowRequestRawData": true,
+	"ShowRequestRawData": false,
 	"Token": ""
 }
 var actual_dictionary: Dictionary = default_dictionary.duplicate()
