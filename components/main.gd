@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 const MAIN_PATH = "user://"
 
