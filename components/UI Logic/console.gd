@@ -12,7 +12,7 @@ func _ready() -> void:
 	)
 
 func _on_show_output_button_toggled(toggled_on: bool) -> void:
-	FS.save_data("ShowRequestRawData", toggled_on)
+	CFGMG.save_data("ShowRequestRawData", toggled_on)
 
 func add_link(Link: String, Message: String):
 	var msg = tr("UI_OPEN_IN_BROWSER") % Message

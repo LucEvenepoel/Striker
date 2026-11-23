@@ -6,7 +6,7 @@ const DISCORD_DEFAULT_CDN: String = "https://cdn.discordapp.com"
 const DISCORD_DEFAULT_API: String = "https://discord.com/api/v10/users/"
 const STRIKER_USER_AGENT: String = "DiscordBot (https://github.com/LucEvenepoel/Striker, v1.0)"
 
-var actual_dictionary = FS.actual_dictionary
+var actual_dictionary = CFGMG.get_settings()
 var user_bag: Dictionary = { "UserID": "", "AvatarID": "","BannerID": ""}
 
 func _ready() -> void:
@@ -45,7 +45,7 @@ func finish_fetch(result: int, response_code: int, _headers: PackedStringArray, 
 	var json = JSON.new()
 	
 	if (data != ""):
-		if (FS.actual_dictionary["ShowRequestRawData"]): # It returns a bool value
+		if (actual_dictionary["ShowRequestRawData"]): # It returns a bool value
 			SignalManager.console_log.emit(data)
 		
 		var info = json.parse(data)

@@ -29,6 +29,7 @@ config/icon="uid://pqwnchm4r3wc"
 
 SignalManager="*uid://b7fy5tyg7nfl"
 VisualErrorHandler="*uid://d0f71wbakn0ep"
+CFGMG="*uid://ceglk0kjl64uh"
 FS="*uid://43pbclacl33o"
 Fetch="*uid://bxmfwb4mfenor"
 
